@@ -11,7 +11,7 @@ const FoodItemDetail = ({ token }) => {
     useEffect(() => {
         const fetchRecipeDetail = async () => {
             try {
-                const response = await fetch(`http://127.0.0.1:8000/api/recipe_detail/${id}/`, {
+                const response = await fetch(`http://3.22.224.142:8000/api/recipe_detail/${id}/`, {
                     headers: {
                         Authorization: token ? `Bearer ${token}` : '',
                     },
@@ -86,7 +86,7 @@ const FoodItemDetail = ({ token }) => {
         <div className="food-item-detail">
             <h2 className='foodItem-name'>{recipeDetail.food_item_name}</h2>
             {recipeDetail.recipe_image && (
-                <img src={`http://127.0.0.1:8000${recipeDetail.recipe_image}`} alt={recipeDetail.food_item_name} />
+                <img src={`http://3.22.224.142:8000${recipeDetail.recipe_image}`} alt={recipeDetail.food_item_name} />
             )}
             
             <div>
