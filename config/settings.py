@@ -42,7 +42,8 @@ MIDDLEWARE = [
 
 CORS_ALLOW_ALL_ORIGINS = True  # For development purposes only
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # React dev server
+    "http://localhost:3000",
+    "https://recipebucketrukku.s3.us-east-2.amazonaws.com",# React dev server
 ]
 
 ROOT_URLCONF = 'config.urls'
