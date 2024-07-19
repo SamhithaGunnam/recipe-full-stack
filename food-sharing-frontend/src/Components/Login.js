@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/authContext'; // Import useAuth hook
+import { useAuth } from '../context/authContext';
 import '../css/Login.css';
 
 const Login = () => {
     const [error, setError] = useState(null);
-    const [success, setSuccess] = useState(null); // State for success message
+    const [success, setSuccess] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
-    const { saveToken, saveUser } = useAuth(); // Access saveToken and saveUser from context
+    const { saveToken, saveUser } = useAuth();
     const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
@@ -15,10 +15,10 @@ const Login = () => {
         const { username, password } = event.target.elements;
 
         setIsLoading(true);
-        setSuccess(null); // Reset success message before making request
+        setSuccess(null);
 
         try {
-            const response = await fetch('http://localhost:8000/api/auth/login/', {
+            const response = await fetch('http://3.22.224.142:8000/api/auth/login/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -30,20 +30,19 @@ const Login = () => {
             });
 
             if (!response.ok) {
-                const errorText = await response.text(); // Get the response text
+                const errorText = await response.text();
                 throw new Error(errorText);
             }
 
             const data = await response.json();
-            saveToken(data.access); // Save access token to context
-            saveUser(username.value); // Save user info to context
+            saveToken(data.access);
+            saveUser(username.value);
             setError(null);
-            setSuccess('Login successful!'); // Set success message
+            setSuccess('Login successful!');
 
-            // Hide success message after 3 seconds and then refresh the page
             setTimeout(() => {
                 setSuccess(null);
-                window.location.reload(); // Refresh the page
+                window.location.reload();
             }, 500);
 
         } catch (error) {
@@ -60,7 +59,7 @@ const Login = () => {
                 <div className="login-form-container">
                     <div className="header-container">
                         <h2 className="login-heading">Login</h2>
-                        {success && <p className="success-message">{success}</p>} {/* Display success message */}
+                        {success && <p className="success-message">{success}</p>}
                     </div>
                     {error && <p className="error-message">{error}</p>}
                     <form className="login-form" onSubmit={handleSubmit}>
