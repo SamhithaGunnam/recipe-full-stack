@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import '../css/Home.css';  // Ensure this CSS file is imported
+import '../css/Home.css';
 
 const Home = ({ token }) => {
     const [foodItems, setFoodItems] = useState([]);
@@ -11,7 +11,7 @@ const Home = ({ token }) => {
     useEffect(() => {
         const fetchFoodItems = async () => {
             try {
-                const response = await fetch('http://127.0.0.1:8000/api/food_items/', {
+                const response = await fetch('http://3.22.224.142:8000/api/food_items/', {
                     headers: {
                         Authorization: token ? `Bearer ${token}` : '',
                     },
@@ -32,7 +32,7 @@ const Home = ({ token }) => {
 
         const fetchUsers = async () => {
             try {
-                const response = await fetch('http://127.0.0.1:8000/api/users/');
+                const response = await fetch('http://3.22.224.142:8000/api/users/');
 
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -68,7 +68,7 @@ const Home = ({ token }) => {
         <div className="food-items-container">
             {foodItems.map(item => (
                 <Link to={`/recipe_detail/${item.id}`} key={item.id} className="food-item">
-                    {item.image && <img src={`http://127.0.0.1:8000${item.image}`} alt={item.name} />}
+                    {item.image && <img src={`http://3.22.224.142:8000${item.image}`} alt={item.name} />}
                     <div className="food-item-text">
                         <h3>{item.name}</h3>
                         <p>{item.description}</p>
