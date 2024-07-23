@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://3.22.224.142:8000/',
+  baseURL: 'const API_URL = 'http://3.22.224.142:8000/api/food_items/',
   timeout: 5000,
   headers: {
       'Content-Type': 'application/json',
